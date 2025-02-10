@@ -15,7 +15,7 @@ lint = true
 [default.deploy.parameters]
 capabilities = "CAPABILITY_IAM"
 confirm_changeset = true
-resolve_s3 = true
+resolve_s3 = false
 s3_prefix = "tournamentApplication"
 region = "us-east-1"
 disable_rollback = true
