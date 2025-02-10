@@ -1,34 +1,54 @@
 import json
-
-# import requests
-
+import os
+import psycopg2
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
+    conn = None
+    cursor = None
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+    try:
+        platform_id = event.get("pathParameters", {}).get("platform_id")
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+        if not platform_id:
+            return {
+                "statusCode": 400,
+                "body": json.dumps({"error": "El parámetro 'platform_id' es obligatorio"})
+            }
 
-    context: object, required
-        Lambda Context runtime methods and attributes
+        conn = psycopg2.connect(
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
+        )
+        cursor = conn.cursor()
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
+        select_query = "SELECT id, nombre FROM plataformas WHERE id = %s;"
+        cursor.execute(select_query, (platform_id,))
+        platform = cursor.fetchone()
 
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
+        if platform is None:
+            return {
+                "statusCode": 404,
+                "body": json.dumps({"error": "Plataforma no encontrada"})
+            }
 
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
+        return {
+            "statusCode": 200,
+            "body": json.dumps({
+                "id": platform[0],
+                "nombre": platform[1]
+            })
+        }
 
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
-    }
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()

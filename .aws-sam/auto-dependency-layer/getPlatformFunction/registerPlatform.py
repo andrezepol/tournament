@@ -1,34 +1,65 @@
 import json
-
-# import requests
-
+import os
+import psycopg2
 
 def lambda_handler(event, context):
-    """Sample pure Lambda function
+    conn = None
+    cursor = None
 
-    Parameters
-    ----------
-    event: dict, required
-        API Gateway Lambda Proxy Input Format
+    try:
+        if "body" not in event or not event["body"]:
+            return {
+                "statusCode": 400,
+                "body": json.dumps({"error": "No se recibió un cuerpo válido en la solicitud"})
+            }
 
-        Event doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html#api-gateway-simple-proxy-for-lambda-input-format
+        body = json.loads(event["body"])
+        nombre = body.get("nombre")
 
-    context: object, required
-        Lambda Context runtime methods and attributes
+        if not nombre:
+            return {
+                "statusCode": 400,
+                "body": json.dumps({"error": "El campo 'nombre' es obligatorio"})
+            }
 
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
+        conn = psycopg2.connect(
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
+        )
+        cursor = conn.cursor()
 
-    Returns
-    ------
-    API Gateway Lambda Proxy Output Format: dict
+        insert_query = """
+        INSERT INTO plataformas (nombre)
+        VALUES (%s)
+        RETURNING id;
+        """
 
-        Return doc: https://docs.aws.amazon.com/apigateway/latest/developerguide/set-up-lambda-proxy-integrations.html
-    """
+        cursor.execute(insert_query, (nombre,))
+        platform_id = cursor.fetchone()[0]
 
-    return {
-        "statusCode": 200,
-        "body": json.dumps({
-            "message": "hello world",
-            # "location": ip.text.replace("\n", "")
-        }),
-    }
+        conn.commit()
+
+        return {
+            "statusCode": 201,
+            "body": json.dumps({"message": "Plataforma registrada exitosamente", "platform_id": platform_id})
+        }
+
+    except json.JSONDecodeError:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "El body no es un JSON válido"})
+        }
+
+    except Exception as e:
+        return {
+            "statusCode": 500,
+            "body": json.dumps({"error": str(e)})
+        }
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
