@@ -1,0 +1,250 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Tournament
+
+  Sample SAM Template for Tournament
+
+# More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+
+Resources:
+  #API Gateway
+  #userManager Functions
+  createUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/usersManager/
+      Handler: createUser.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/createUser
+            Method: POST          
+
+  deleteUserFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        CodeUri: src/handler/usersManager/
+        Handler: deleteUser.lambda_handler
+        Runtime: python3.11
+        Architectures:
+          - x86_64
+        Events:
+          UserManagement:
+            Type: Api
+            Properties:
+              Path: /usersManager/deleteUser/{userId}
+              Method: DELETE
+
+  getAllUsersFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        CodeUri: src/handler/usersManager/
+        Handler: getAllUsers.lambda_handler
+        Runtime: python3.11
+        Architectures:
+          - x86_64
+        Events:
+          UserManagement:
+            Type: Api
+            Properties:
+              Path: /usersManager/getAllUsers
+              Method: GET
+
+  getUserFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        CodeUri: src/handler/usersManager/
+        Handler: getUser.lambda_handler
+        Runtime: python3.11
+        Architectures:
+          - x86_64
+        Events:
+          UserManagement:
+            Type: Api
+            Properties:
+              Path: /usersManager/getUser/{userId}
+              Method: GET
+
+  updateUserFunction:
+      Type: AWS::Serverless::Function
+      Properties:
+        CodeUri: src/handler/usersManager/
+        Handler: updateUser.lambda_handler
+        Runtime: python3.11
+        Architectures:
+          - x86_64
+        Events:
+          UserManagement:
+            Type: Api
+            Properties:
+              Path: /usersManager/updateUser/{userId}
+              Method: PUT
+
+  #adminManager
+  getPlatformFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/adminManager/
+      Handler: getPlatform.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        PlatformManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/getPlatform
+            Method: GET
+
+  getVideogameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/adminManager/
+      Handler: getVideogame.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        VideogameManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/getVideogame
+            Method: GET
+
+  registerPlatformFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/adminManager/
+      Handler: registerPlatform.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        PlatformManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/registerPlatform
+            Method: POST
+
+  registerVideogameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/adminManager/
+      Handler: registerVideogame.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        VideogameManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/registerVideogame
+            Method: POST
+
+#tournamentManager
+  buyTicketFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/tournamentManager/
+      Handler: buyTicket.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/buyTicket
+            Method: POST
+
+  createTournamentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/tournamentManager/
+      Handler: createTournament.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/createTournament
+            Method: POST
+
+  donationsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/handler/tournamentManager/
+      Handler: donations.lambda_handler
+      Runtime: python3.11
+      Architectures:
+        - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/donations
+            Method: POST
+
+Outputs:
+# ServerlessRestApi is an implicit API created out of Events key under Serverless::Function
+# Find out more about other implicit resources you can reference within SAM
+# https://github.com/awslabs/serverless-application-model/blob/master/docs/internals/generated_resources.rst#api
+  createUserFunction:
+    Description: "API Gateway endpoint URL for Prod stage for createUserFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/createUser/"
+  
+  deleteUserFunction:
+    Description: "API Gateway endpoint URL for Prod stage for deleteUserFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/deleteUser/{userId}/"
+    
+  getAllUsersFunction:
+    Description: "API Gateway endpoint URL for Prod stage for getAllUsersFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/getAllUsers/"
+
+  getUserFunction:
+    Description: "API Gateway endpoint URL for Prod stage for getUserFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/getUser/{userId}/"  
+
+  updateUserFunction:
+    Description: "API Gateway endpoint URL for Prod stage for updateUserFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/updateUser/{userId}/"
+
+  getPlatformFunction:
+    Description: "API Gateway endpoint URL for Prod stage for getPlatformFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/getPlatform/"
+
+  getVideogameFunction: 
+    Description: "API Gateway endpoint URL for Prod stage for getVideogameFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/getVideogame/"
+
+  registerPlatformFunction:
+    Description: "API Gateway endpoint URL for Prod stage for registerPlatformFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/registerPlatform/"
+  
+  registerVideogameFunction:
+    Description: "API Gateway endpoint URL for Prod stage for registerVideogameFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/registerVideogame/"
+
+  buyTicketFunction:
+    Description: "API Gateway endpoint URL for Prod stage for buyTicketFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/buyTicket/"
+
+  createTournamentFunction:
+    Description: "API Gateway endpoint URL for Prod stage for createTournamentFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/createTournament/"
+
+  donationsFunction:
+    Description: "API Gateway endpoint URL for Prod stage for donationsFunction:"
+    Value: !Sub "https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/donations/"
+  
