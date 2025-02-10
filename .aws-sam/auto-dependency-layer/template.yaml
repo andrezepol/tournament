@@ -1,0 +1,308 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: 'Tournament
+
+  Sample SAM Template for Tournament
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+    MemorySize: 128
+Resources:
+  createUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: createUserFunction
+      Handler: createUser.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/createUser
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.createUserFunctionea76a479DepLayer
+    Metadata:
+      SamResourceId: createUserFunction
+  deleteUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: deleteUserFunction
+      Handler: deleteUser.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/deleteUser/{userId}
+            Method: DELETE
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.deleteUserFunction9024ecc8DepLayer
+    Metadata:
+      SamResourceId: deleteUserFunction
+  getAllUsersFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: getAllUsersFunction
+      Handler: getAllUsers.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/getAllUsers
+            Method: GET
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.getAllUsersFunction18b1247fDepLayer
+    Metadata:
+      SamResourceId: getAllUsersFunction
+  getUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: getUserFunction
+      Handler: getUser.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/getUser/{userId}
+            Method: GET
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.getUserFunction427f55f8DepLayer
+    Metadata:
+      SamResourceId: getUserFunction
+  updateUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: updateUserFunction
+      Handler: updateUser.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        UserManagement:
+          Type: Api
+          Properties:
+            Path: /usersManager/updateUser/{userId}
+            Method: PUT
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.updateUserFunction4fd0443fDepLayer
+    Metadata:
+      SamResourceId: updateUserFunction
+  getPlatformFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: getPlatformFunction
+      Handler: getPlatform.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        PlatformManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/getPlatform
+            Method: GET
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.getPlatformFunction881c14efDepLayer
+    Metadata:
+      SamResourceId: getPlatformFunction
+  getVideogameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: getVideogameFunction
+      Handler: getVideogame.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        VideogameManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/getVideogame
+            Method: GET
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.getVideogameFunction4d19fdebDepLayer
+    Metadata:
+      SamResourceId: getVideogameFunction
+  registerPlatformFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: registerPlatformFunction
+      Handler: registerPlatform.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        PlatformManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/registerPlatform
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.registerPlatformFunctionb7171fe1DepLayer
+    Metadata:
+      SamResourceId: registerPlatformFunction
+  registerVideogameFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: registerVideogameFunction
+      Handler: registerVideogame.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        VideogameManagement:
+          Type: Api
+          Properties:
+            Path: /adminManager/registerVideogame
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.registerVideogameFunction9bdbcec0DepLayer
+    Metadata:
+      SamResourceId: registerVideogameFunction
+  buyTicketFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: buyTicketFunction
+      Handler: buyTicket.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/buyTicket
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.buyTicketFunctionc6ad22d4DepLayer
+    Metadata:
+      SamResourceId: buyTicketFunction
+  createTournamentFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: createTournamentFunction
+      Handler: createTournament.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/createTournament
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.createTournamentFunctionb012e3dcDepLayer
+    Metadata:
+      SamResourceId: createTournamentFunction
+  donationsFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: donationsFunction
+      Handler: donations.lambda_handler
+      Runtime: python3.11
+      Architectures:
+      - x86_64
+      Events:
+        TournamentManagement:
+          Type: Api
+          Properties:
+            Path: /tournamentManager/donations
+            Method: POST
+      Layers:
+      - Fn::GetAtt:
+        - AwsSamAutoDependencyLayerNestedStack
+        - Outputs.donationsFunction8e58e659DepLayer
+    Metadata:
+      SamResourceId: donationsFunction
+  AwsSamAutoDependencyLayerNestedStack:
+    DeletionPolicy: Delete
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      TemplateURL: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\adl_nested_template.yaml
+    Type: AWS::CloudFormation::Stack
+Outputs:
+  createUserFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for createUserFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/createUser/
+  deleteUserFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for deleteUserFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/deleteUser/{userId}/
+  getAllUsersFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for getAllUsersFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/getAllUsers/
+  getUserFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for getUserFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/getUser/{userId}/
+  updateUserFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for updateUserFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/usersManager/updateUser/{userId}/
+  getPlatformFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for getPlatformFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/getPlatform/
+  getVideogameFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for getVideogameFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/getVideogame/
+  registerPlatformFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for registerPlatformFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/registerPlatform/
+  registerVideogameFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for registerVideogameFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/adminManager/registerVideogame/
+  buyTicketFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for buyTicketFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/buyTicket/
+  createTournamentFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for createTournamentFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/createTournament/
+  donationsFunction:
+    Description: 'API Gateway endpoint URL for Prod stage for donationsFunction:'
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/tournamentManager/donations/

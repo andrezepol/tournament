@@ -1,0 +1,176 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS SAM CLI Nested Stack for Auto Dependency Layer Creation
+Metadata:
+  SamCliInfo: 1.132.0
+  key: AWS SAM CLI sync command
+Outputs:
+  buyTicketFunctionc6ad22d4DepLayer:
+    Value:
+      Ref: buyTicketFunctionc6ad22d4DepLayer
+  createTournamentFunctionb012e3dcDepLayer:
+    Value:
+      Ref: createTournamentFunctionb012e3dcDepLayer
+  createUserFunctionea76a479DepLayer:
+    Value:
+      Ref: createUserFunctionea76a479DepLayer
+  deleteUserFunction9024ecc8DepLayer:
+    Value:
+      Ref: deleteUserFunction9024ecc8DepLayer
+  donationsFunction8e58e659DepLayer:
+    Value:
+      Ref: donationsFunction8e58e659DepLayer
+  getAllUsersFunction18b1247fDepLayer:
+    Value:
+      Ref: getAllUsersFunction18b1247fDepLayer
+  getPlatformFunction881c14efDepLayer:
+    Value:
+      Ref: getPlatformFunction881c14efDepLayer
+  getUserFunction427f55f8DepLayer:
+    Value:
+      Ref: getUserFunction427f55f8DepLayer
+  getVideogameFunction4d19fdebDepLayer:
+    Value:
+      Ref: getVideogameFunction4d19fdebDepLayer
+  registerPlatformFunctionb7171fe1DepLayer:
+    Value:
+      Ref: registerPlatformFunctionb7171fe1DepLayer
+  registerVideogameFunction9bdbcec0DepLayer:
+    Value:
+      Ref: registerVideogameFunction9bdbcec0DepLayer
+  updateUserFunction4fd0443fDepLayer:
+    Value:
+      Ref: updateUserFunction4fd0443fDepLayer
+Resources:
+  buyTicketFunctionc6ad22d4DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\buyTicketFunctionc6ad22d4DepLayer
+      Description: Auto created layer for dependencies of function buyTicketFunction
+      LayerName: tournamentApplicf951ab83-buyTicketFunctionc6ad22d4-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  createTournamentFunctionb012e3dcDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\createTournamentFunctionb012e3dcDepLayer
+      Description: Auto created layer for dependencies of function createTournamentFunction
+      LayerName: tournamentApplicf951ab83-createTournamentFunctib012e3dc-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  createUserFunctionea76a479DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\createUserFunctionea76a479DepLayer
+      Description: Auto created layer for dependencies of function createUserFunction
+      LayerName: tournamentApplicf951ab83-createUserFunctionea76a479-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  deleteUserFunction9024ecc8DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\deleteUserFunction9024ecc8DepLayer
+      Description: Auto created layer for dependencies of function deleteUserFunction
+      LayerName: tournamentApplicf951ab83-deleteUserFunction9024ecc8-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  donationsFunction8e58e659DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\donationsFunction8e58e659DepLayer
+      Description: Auto created layer for dependencies of function donationsFunction
+      LayerName: tournamentApplicf951ab83-donationsFunction8e58e659-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  getAllUsersFunction18b1247fDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\getAllUsersFunction18b1247fDepLayer
+      Description: Auto created layer for dependencies of function getAllUsersFunction
+      LayerName: tournamentApplicf951ab83-getAllUsersFunction18b1247f-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  getPlatformFunction881c14efDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\getPlatformFunction881c14efDepLayer
+      Description: Auto created layer for dependencies of function getPlatformFunction
+      LayerName: tournamentApplicf951ab83-getPlatformFunction881c14ef-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  getUserFunction427f55f8DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\getUserFunction427f55f8DepLayer
+      Description: Auto created layer for dependencies of function getUserFunction
+      LayerName: tournamentApplicf951ab83-getUserFunction427f55f8-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  getVideogameFunction4d19fdebDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\getVideogameFunction4d19fdebDepLayer
+      Description: Auto created layer for dependencies of function getVideogameFunction
+      LayerName: tournamentApplicf951ab83-getVideogameFunction4d19fdeb-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  registerPlatformFunctionb7171fe1DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\registerPlatformFunctionb7171fe1DepLayer
+      Description: Auto created layer for dependencies of function registerPlatformFunction
+      LayerName: tournamentApplicf951ab83-registerPlatformFunctib7171fe1-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  registerVideogameFunction9bdbcec0DepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\registerVideogameFunction9bdbcec0DepLayer
+      Description: Auto created layer for dependencies of function registerVideogameFunction
+      LayerName: tournamentApplicf951ab83-registerVideogameFunct9bdbcec0-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+  updateUserFunction4fd0443fDepLayer:
+    Metadata:
+      CreatedBy: AWS SAM CLI sync command
+    Properties:
+      CompatibleRuntimes:
+      - python3.11
+      ContentUri: C:\Users\andre\Documents\GitHub\tournament\.aws-sam\auto-dependency-layer\updateUserFunction4fd0443fDepLayer
+      Description: Auto created layer for dependencies of function updateUserFunction
+      LayerName: tournamentApplicf951ab83-updateUserFunction4fd0443f-DepLayer
+      RetentionPolicy: Delete
+    Type: AWS::Serverless::LayerVersion
+Transform: AWS::Serverless-2016-10-31
