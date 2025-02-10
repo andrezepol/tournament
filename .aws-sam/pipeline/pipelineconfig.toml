@@ -1,0 +1,23 @@
+version = 0.1
+[default.pipeline_bootstrap.parameters]
+oidc_provider_url = "https://token.actions.githubusercontent.com"
+oidc_client_id = "sts.amazonaws.com"
+github_org = "andrezepol"
+github_repo = "tournament"
+deployment_branch = "main"
+oidc_provider = "github-actions"
+permissions_provider = "OpenID Connect (OIDC)"
+
+[dev.pipeline_bootstrap.parameters]
+pipeline_execution_role = "arn:aws:iam::730335186232:role/aws-sam-cli-managed-dev-pipel-PipelineExecutionRole-p3wST67ffBdI"
+cloudformation_execution_role = "arn:aws:iam::730335186232:role/aws-sam-cli-managed-dev-p-CloudFormationExecutionRo-G55KR1QoBlwA"
+artifacts_bucket = "aws-sam-cli-managed-dev-pipeline-r-artifactsbucket-cvef0t6nqrru"
+image_repository = ""
+region = "us-east-1"
+
+[prd.pipeline_bootstrap.parameters]
+pipeline_execution_role = "arn:aws:iam::730335186232:role/aws-sam-cli-managed-prd-pipel-PipelineExecutionRole-NeCCPBvzOyir"
+cloudformation_execution_role = "arn:aws:iam::730335186232:role/aws-sam-cli-managed-prd-p-CloudFormationExecutionRo-3hUqTRM71M4Y"
+artifacts_bucket = "aws-sam-cli-managed-prd-pipeline-r-artifactsbucket-a7o9gcs1f0ds"
+image_repository = ""
+region = "us-east-1"
