@@ -1,0 +1,145 @@
+openapi: 3.0.1
+info:
+  title: adminManager
+  description: API para la gestión de videojuegos.
+  version: 1.0.0
+components:
+  securitySchemes:
+    AWS_IAM:
+      type: awsIam
+paths:
+  /adminManager/getVideogame:
+    get:
+      summary: Obtiene un videojuego por su ID.
+      operationId: getVideogame
+      security:
+        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Identificador único del videojuego a consultar.
+      responses:
+        '200':
+          description: Videojuego obtenido exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                    description: Nombre del videojuego.
+                  plataforma_id:
+                    type: integer
+                    description: Identificador de la plataforma asociada.
+                  tipo_id:
+                    type: integer
+                    description: Identificador del tipo de videojuego.
+        '400':
+          description: Solicitud incorrecta. Faltan parámetros requeridos.
+        '404':
+          description: Videojuego no encontrado.
+        '500':
+          description: Error interno del servidor.
+
+  /adminManager/getPlatform:
+    get:
+      summary: Obtiene una plataforma por su ID.
+      operationId: getPlatform
+      security:
+        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
+      parameters:
+        - name: platform_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Identificador único de la plataforma a consultar.
+      responses:
+        '200':
+          description: Plataforma obtenida exitosamente.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nombre:
+                    type: string
+                    description: Nombre de la plataforma (Xbox, PS4, PS5, etc.).
+        '400':
+          description: Solicitud incorrecta. Faltan parámetros requeridos.
+        '404':
+          description: Plataforma no encontrada.
+        '500':
+          description: Error interno del servidor.
+
+  /adminManager/registerPlatform:
+    post:
+      summary: Registra una nueva plataforma.
+      operationId: registerPlatform
+      security:
+        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - nombre
+              properties:
+                id:
+                  type: integer
+                  description: Identificador único de la plataforma.
+                nombre:
+                  type: string
+                  description: Nombre de la plataforma (Xbox, PS4, PS5, etc.).
+      responses:
+        '201':
+          description: Plataforma registrada exitosamente.
+        '400':
+          description: Solicitud incorrecta. Datos faltantes o incorrectos.
+        '500':
+          description: Error interno del servidor.
+
+  /adminManager/registerVideogame:
+    post:
+      summary: Registra un nuevo videojuego.
+      operationId: registerVideogame
+      security:
+        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - id
+                - nombre
+                - plataforma_id
+                - tipo_id
+              properties:
+                id:
+                  type: integer
+                  description: Identificador único del videojuego.
+                nombre:
+                  type: string
+                  description: Nombre del videojuego.
+                plataforma_id:
+                  type: integer
+                  description: Identificador de la plataforma asociada.
+                tipo_id:
+                  type: integer
+                  description: Identificador del tipo de videojuego.
+      responses:
+        '201':
+          description: Videojuego registrado exitosamente.
+        '400':
+          description: Solicitud incorrecta. Datos faltantes o incorrectos.
+        '500':
+          description: Error interno del servidor.
