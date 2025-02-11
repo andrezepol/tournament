@@ -3,10 +3,6 @@ info:
   title: userManagerAPI
   description: API para la gestión de usuarios.
   version: 1.0.0
-components:
-  securitySchemes:
-    AWS_IAM:
-      type: awsIam
 paths:
   /usersManager/createUser:
     post:
@@ -63,8 +59,6 @@ paths:
     delete:
       summary: Elimina un usuario.
       operationId: deleteUser
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       parameters:
         - name: id
           in: query
@@ -86,8 +80,6 @@ paths:
     get:
       summary: Obtiene todos los usuarios.
       operationId: getAllUsers
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       responses:
         '200':
           description: Lista de usuarios obtenida exitosamente.
@@ -127,8 +119,6 @@ paths:
     get:
       summary: Obtiene un usuario por su ID.
       operationId: getUser
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       parameters:
         - name: user_id
           in: query
@@ -175,8 +165,6 @@ paths:
     put:
       summary: Actualiza un usuario por su ID.
       operationId: updateUser
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:

@@ -3,17 +3,11 @@ info:
   title: tournamentManager
   description: API para la gestión de torneos.
   version: 1.0.0
-components:
-  securitySchemes:
-    AWS_IAM:
-      type: awsIam
 paths:
   /tournamentManager/createTournament:
     post:
       summary: Crea un nuevo torneo.
       operationId: createTournament
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:
@@ -64,8 +58,6 @@ paths:
     post:
       summary: Realiza una donación a un torneo.
       operationId: donations
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:
@@ -99,8 +91,6 @@ paths:
     post:
       summary: Compra un ticket para un torneo.
       operationId: buyTicket
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:

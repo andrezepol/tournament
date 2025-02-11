@@ -3,17 +3,11 @@ info:
   title: adminManager
   description: API para la gestión de videojuegos.
   version: 1.0.0
-components:
-  securitySchemes:
-    AWS_IAM:
-      type: awsIam
 paths:
   /adminManager/getVideogame:
     get:
       summary: Obtiene un videojuego por su ID.
       operationId: getVideogame
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       parameters:
         - name: id
           in: query
@@ -49,8 +43,6 @@ paths:
     get:
       summary: Obtiene una plataforma por su ID.
       operationId: getPlatform
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       parameters:
         - name: platform_id
           in: query
@@ -80,8 +72,6 @@ paths:
     post:
       summary: Registra una nueva plataforma.
       operationId: registerPlatform
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:
@@ -110,8 +100,6 @@ paths:
     post:
       summary: Registra un nuevo videojuego.
       operationId: registerVideogame
-      security:
-        - AWS_IAM: []  # Aquí especificas que este endpoint requiere AWS_IAM
       requestBody:
         required: true
         content:
