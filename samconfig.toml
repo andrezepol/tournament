@@ -7,7 +7,7 @@ stack_name = "tournamentApp"
 
 [default.build.parameters]
 cached = true
-parallel = true
+parallel = true 
 
 [default.validate.parameters]
 lint = true
